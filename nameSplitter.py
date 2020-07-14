@@ -47,7 +47,12 @@ while True:
 
     if blank1 == True or blank2 == True:
         print('---- It\'s written properly. ----')
+
+    if len(name) == 2:
+       last = name[0:1]
+       first = name[1:]
+       space = " "
+       print(last + space + first)
     else:
         main(name)    
         print('---- next ----')
-
