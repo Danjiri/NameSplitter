@@ -21,30 +21,15 @@ def main(fullname):
                 appl_data.append(l)   #該当データ抽出
                 
 
-    print(appl_data[0][0])
+    for i in range(1,len(fullname)):
 
-    print(appl_data[0][1])
-    print(appl_data[0][14])
+        #考えられる名前分割パターンの全通り
+        tmp_lastname = fullname[0:i]
+        tmp_firstname = fullname[i:]
+        space = " "
+        tmp_name = tmp_lastname + space + tmp_firstname
 
-    evaluated_data = []
-
-#    for i in range(len(fullname)):
-#        for l in range(1,14):
-#            order_point = appl_data[i][l]
-#            length_point = 
-#    surname
-#    name  [][]+[][] /(len(fullname) - 1)
-
-
-
-
-
-
-
-  
-
-
-
+        #OrderPointの計算
 
 
 
