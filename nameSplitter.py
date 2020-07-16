@@ -28,30 +28,46 @@ def main(fullname):
         tmp_firstname = fullname[i:]
         space = " "
         tmp_name = tmp_lastname + space + tmp_firstname
+        print(tmp_name)
 
-        #OrderPointの計算
+    a = []
+    b = []
 
-     #OrderPointの計算
-  
+    #OrderPointの計算  
 
-    for i in range(1,len(fullname)-2): 
+    for i in range(1,len(fullname)-1): #1-最後の1手前
+        if i == 1:  #2文字目の各パターンの確率                      
+            for j in reversed(range(2,5)):#1の全パターン                                
+                a.append(appl_data[i][j] / (appl_data[i][2] + appl_data[i][3] + appl_data[i][4]))
+                if j == 2 and len(fullname) > 4: #残りの字数分の計算結果の追加 / 姓名が4文字以上の場合
+                    for m in range(len(fullname)-4): 
+                        a.append(appl_data[i][j] / (appl_data[i][2] + appl_data[i][3] + appl_data[i][4]))
+                         #2文字目はok
+        else:    #3文字目以降の各パターンの確率
+                for k in reversed(range(2,5)): #4 3 2                      
+                    if k == 4 and len(fullname) > 3: #名前4文字以上
+                        for l in range(i-1): ##この増減に問題ありそう  5文字の場合 4文字目 5 5 4 3 2   
+                                                                    #6文字の場合 5文字目 5 5 5 4 3 2
+                            print("k5:",k)                
+                            b.append(appl_data[i][5] / (appl_data[i][2] + appl_data[i][3] + appl_data[i][4] + appl_data[i][5]))
+                    if k == 3 or k == 4:
+                        print("k43:",k) 
+                        b.append(appl_data[i][k] / (appl_data[i][2]  + appl_data[i][3] + appl_data[i][4] + appl_data[i][5]))
+                    if k == 2 and i < len(fullname) - 2 and len(fullname) > 4:
+                        for n in range(len(fullname)-4):
+                            print('k2',k)
+                            b.append(appl_data[i][k] / (appl_data[i][2]  + appl_data[i][3] + appl_data[i][4] + appl_data[i][5]))
+#                            print('n:',n)
 
-        if i == 1:  #2文字目の各パターンの確率                        
-            for j in reversed(range(2,5)):#1の全パターン                 
-                appl_data[i][j] / (appl_data[i][2] + appl_data[i][3] + appl_data[i][4])                
-        else:
-               #それ以外の各パターンの確率
-            for k in reversed(range(3,5)):
-                print(k)
-                if i : 
-                for l in range(i-1):
-                    print(l)                
-                    appl_data[i][5] / (appl_data[i][2] + appl_data[i][3] + appl_data[i][4] + appl_data[i][5])
-                appl_data[i][l] / (appl_data[i][2]  + appl_data[i][3] + appl_data[i][4] + appl_data[i][5])
+    print('a[]:',a)
+#    b = np.reshape(a, (len(fullname)-2,len(fullname)-1))
+    print('b[]:',b)
 
 
 """
-
+        appl_data[2][5] / (appl_data[2][2] + appl_data[2][3] + appl_data[2][4] + appl_data[2][5])   #敦 3
+        appl_data[2][4] / (appl_data[2][2] + appl_data[2][3] + appl_data[2][4] + appl_data[2][5]) #敦 3
+        appl_data[2][3] / (appl_data[2][2] + appl_data[2][3] + appl_data[2][4] + appl_data[2][5]) #敦 3
 ###
         ##1周目
         appl_data[1][4] / (appl_data[1][2] + appl_data[1][3] + appl_data[1][4])   #本 2
@@ -77,7 +93,7 @@ def main(fullname):
 
         appl_data[2][5] / (appl_data[2][2] + appl_data[2][3] + appl_data[2][4] + appl_data[2][5])   #敦 3
         appl_data[2][4] / (appl_data[2][2] + appl_data[2][3] + appl_data[2][4] + appl_data[2][5]) #敦 3
-        appl_data[2][4] / (appl_data[2][2] + appl_data[2][3] + appl_data[2][4] + appl_data[2][5]) #敦 3
+        appl_data[2][3] / (appl_data[2][2] + appl_data[2][3] + appl_data[2][4] + appl_data[2][5]) #敦 3
 
         appl_data[i][5 - (1~3, 0~3)] /(appl_data[i][2] + appl_data[i][3] + appl_data[i][4] + appl_data[i][5])
         appl_data[i][5 - (1~3, 0~3)] /(appl_data[i][2] + appl_data[i][3] + appl_data[i][4] + appl_data[i][5])
